@@ -1,0 +1,19 @@
+{
+  "name": "frontend-general-charts",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.10.26",
+    "axios": "^0.27.2",
+    "vue": "^3.2.37",
+    "vue-axios": "^3.4.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "vite": "^2.9.12"
+  }
+}
