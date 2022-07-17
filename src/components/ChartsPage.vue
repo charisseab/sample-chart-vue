@@ -3,7 +3,18 @@
 <template>
   <div class="greetings">
     <h1 class="green">Chart</h1>
-    <ChartDisplay/>
+    <div class="metrics-wrap">
+      <label>
+        Select Metric:
+      </label>
+      <select id="metricSelectOptions" >
+        <option value="impression">Impression</option>
+        <option value="clicks">Clicks</option>
+        <option value="revenue">Revenue</option>
+      </select>
+      <button v-on:click="selectMetric">View Metric</button>
+    </div>
+    <ChartDisplay :metric="selectedMetric" />
   </div>
 </template>
 
@@ -16,19 +27,28 @@ export default {
   components: {
     ChartDisplay
   },
-  
+  data(){
+    return{
+      selectedMetric: "impression"
+    }
+  },  
+  methods: {
+    selectMetric(){
+      this.selectedMetric = document.getElementById("metricSelectOptions").value
+      console.log(this.selectedMetric)
+    }
+  }, 
+  created() {
+      console.log(this.selectedMetric);
+  }
 }
 </script>
 
 <style scoped>
 #chartdiv {
   width: 100%;
-  height: 400px;
 }
-.hello {
-  width: 100%;
-  height: 500px;
-}
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
