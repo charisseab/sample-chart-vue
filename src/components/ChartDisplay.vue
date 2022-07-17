@@ -42,7 +42,7 @@ export default {
     selectMetrics(){
 
     },
-    createChart(metricToDisplay){
+    createChart(){
       let chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart);
       chart.paddingRight = 20;
       
@@ -56,30 +56,29 @@ export default {
 
       let series = chart.series.push(new am4charts.ColumnSeries());
       series.dataFields.dateX = "date";
-      series.dataFields.valueY = metricToDisplay;
-      series.name = metricToDisplay.toUpperCase();
+      series.dataFields.valueY = this.metric;
+      series.name = this.metric.toUpperCase();
       series.tooltipText = "{name}";
 
       // Legend and cursor
       chart.cursor = new am4charts.XYCursor();
       chart.legend = new am4charts.Legend();
+    },
+    async loadChart(){
+      await this.getData()
+      if(this.chartData.length >0){
+        this.createChart();
+      }
     }
   },
 
   async mounted(){
-    console.log(this.metric);
-    await this.getData()
-    if(this.chartData.length >0){
-      this.createChart("impressions");
-    }
+    this.loadChart()
   },
 
   watch: {
     async metric(newProp, oldProp){
-      await this.getData()
-      if(this.chartData.length >0){
-        this.createChart(newProp);
-      }
+      this.loadChart()
     }
   }
 }

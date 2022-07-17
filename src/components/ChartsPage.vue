@@ -8,7 +8,7 @@
         Select Metric:
       </label>
       <select id="metricSelectOptions" >
-        <option value="impression">Impression</option>
+        <option value="impressions">Impression</option>
         <option value="clicks">Clicks</option>
         <option value="revenue">Revenue</option>
       </select>
@@ -29,18 +29,14 @@ export default {
   },
   data(){
     return{
-      selectedMetric: "impression"
+      selectedMetric: "impressions"
     }
   },  
   methods: {
     selectMetric(){
       this.selectedMetric = document.getElementById("metricSelectOptions").value
-      console.log(this.selectedMetric)
     }
   }, 
-  created() {
-      console.log(this.selectedMetric);
-  }
 }
 </script>
 
